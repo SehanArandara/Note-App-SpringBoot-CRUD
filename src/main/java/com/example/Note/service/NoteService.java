@@ -27,4 +27,14 @@ public class NoteService {
         List<Note> noteList = noteRepo.findAll();
         return  modelMapper.map(noteList,new TypeToken<List<NoteDTO>>(){}.getType());
     }
+
+    public NoteDTO updateNote(NoteDTO noteDTO){
+        noteRepo.save(modelMapper.map(noteDTO,Note.class));
+        return  noteDTO;
+    }
+
+    public boolean deleteNote(NoteDTO noteDTO){
+        noteRepo.delete(modelMapper.map(noteDTO,Note.class));
+        return  true;
+    }
 }

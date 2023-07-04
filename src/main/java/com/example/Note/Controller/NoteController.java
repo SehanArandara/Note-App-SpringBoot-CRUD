@@ -26,12 +26,12 @@ public class NoteController {
     }
 
     @PutMapping("/updateNote")
-    public String updateNote(){
-        return "Updated Note";
+    public NoteDTO updateNote(@RequestBody NoteDTO noteDTO){
+        return noteService.updateNote(noteDTO);
     }
 
     @DeleteMapping("/deleteNote")
-    public String deleteNote(){
-        return "deleted Note";
+    public boolean deleteNote(@RequestBody NoteDTO noteDTO){
+        return noteService.deleteNote(noteDTO   );
     }
 }
