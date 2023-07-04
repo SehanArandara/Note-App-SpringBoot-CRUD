@@ -37,4 +37,10 @@ public class NoteService {
         noteRepo.delete(modelMapper.map(noteDTO,Note.class));
         return  true;
     }
+
+    // get one specific Note
+    public NoteDTO getNoteById(String noteId){
+        Note note = noteRepo.getNoteById(noteId);
+        return  modelMapper.map(note,NoteDTO.class);
+    }
 }

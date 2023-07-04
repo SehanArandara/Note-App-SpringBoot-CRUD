@@ -34,4 +34,9 @@ public class NoteController {
     public boolean deleteNote(@RequestBody NoteDTO noteDTO){
         return noteService.deleteNote(noteDTO   );
     }
+
+    @GetMapping("/getOneNote/{noteId}")
+    public NoteDTO getOneNote(@PathVariable String noteId){
+        return noteService.getNoteById(noteId);
+    }
 }
