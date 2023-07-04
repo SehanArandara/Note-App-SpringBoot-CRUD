@@ -5,8 +5,11 @@ import com.example.Note.entity.Note;
 import com.example.Note.repo.NoteRepo;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,5 +21,10 @@ public class NoteService {
     public NoteDTO saveNote(NoteDTO noteDTO){
         noteRepo.save(modelMapper.map(noteDTO,Note.class));
         return noteDTO;
+    }
+
+    public List<NoteDTO> getAllNotes (){
+        List<Note> noteList = noteRepo.findAll();
+        return  modelMapper.map(noteList,new TypeToken<List<NoteDTO>>(){}.getType());
     }
 }

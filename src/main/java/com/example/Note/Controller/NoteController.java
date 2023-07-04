@@ -6,6 +6,8 @@ import com.example.Note.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value= "api/v1/note")
 @CrossOrigin
@@ -13,9 +15,9 @@ public class NoteController {
     @Autowired
     private NoteService noteService;
 
-    @GetMapping("/getNote")
-    public String getNote (){
-        return  "Do Spring boots";
+    @GetMapping("/getNotes")
+    public List<NoteDTO> getNote (){
+        return noteService.getAllNotes();
     }
 
     @PostMapping("/addNote")
