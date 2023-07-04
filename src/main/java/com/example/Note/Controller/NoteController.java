@@ -1,12 +1,17 @@
 package com.example.Note.Controller;
 
 
+import com.example.Note.dto.NoteDTO;
+import com.example.Note.service.NoteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value= "api/v1/note")
 @CrossOrigin
 public class NoteController {
+    @Autowired
+    private NoteService noteService;
 
     @GetMapping("/getNote")
     public String getNote (){
@@ -14,8 +19,8 @@ public class NoteController {
     }
 
     @PostMapping("/addNote")
-    public String addNote (){
-        return "Add Note done!";
+    public NoteDTO addNote (@RequestBody NoteDTO noteDTO){
+        return noteService.saveNote(noteDTO);
     }
 
     @PutMapping("/updateNote")
